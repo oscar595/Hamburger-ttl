@@ -134,6 +134,10 @@
                                    ] ,
                                    [ rdf:type owl:Restriction ;
                                      owl:onProperty :hasTopping ;
+                                     owl:someValuesFrom :BaconTopping
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasTopping ;
                                      owl:someValuesFrom :LettuceTopping
                                    ] ,
                                    [ rdf:type owl:Restriction ;
