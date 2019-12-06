@@ -93,9 +93,14 @@
 #    Data properties
 #################################################################
 
-###  http://www.Hamburger.com/ontologies/Hamburger.owl#hasCalorificContentValue
-:hasCalorificContentValue rdf:type owl:DatatypeProperty ,
-                                   owl:FunctionalProperty .
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#hasCalories
+:hasCalories rdf:type owl:DatatypeProperty ,
+                      owl:FunctionalProperty .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#hasPrice
+:hasPrice rdf:type owl:DatatypeProperty ,
+                   owl:FunctionalProperty .
 
 
 ###  http://www.Hamburger.com/ontologies/Hamburger.owl#hasRating
@@ -105,11 +110,6 @@
 ###  http://www.Hamburger.com/ontologies/Hamburger.owl#kidsMenu
 :kidsMenu rdf:type owl:DatatypeProperty ,
                    owl:FunctionalProperty .
-
-
-###  http://www.Hamburger.com/ontologies/Hamburger.owl#price
-:price rdf:type owl:DatatypeProperty ,
-                owl:FunctionalProperty .
 
 
 ###  http://www.Hamburger.com/ontologies/Hamburger.owl#Today'sSpecial
@@ -500,10 +500,10 @@
                  :hasProtein :BlackBeanPatty ;
                  :hasTopping :RedOnionTopping ,
                              :TomatoTopping ;
-                 :hasCalorificContentValue 400 ;
+                 :hasCalories 400 ;
+                 :hasPrice 9 ;
                  :hasRating 5 ;
                  :kidsMenu "false"^^xsd:boolean ;
-                 :price 9 ;
                  <http://www.Hamburger.com/ontologies/Hamburger.owl#Today'sSpecial> "true"^^xsd:boolean .
 
 
@@ -521,10 +521,10 @@
                                       :MushroomTopping ,
                                       :RedOnionTopping ,
                                       :TomatoTopping ;
-                          :hasCalorificContentValue 400 ;
+                          :hasCalories 400 ;
+                          :hasPrice 15 ;
                           :hasRating 5 ;
                           :kidsMenu "false"^^xsd:boolean ;
-                          :price 15 ;
                           <http://www.Hamburger.com/ontologies/Hamburger.owl#Today'sSpecial> "true"^^xsd:boolean ;
                           rdfs:comment "https://www.cookinglight.com/food/vegetarian/veggie-burger-recipes?slide=195848#195848"^^xsd:string .
 
@@ -537,40 +537,40 @@
 ###  http://www.Hamburger.com/ontologies/Hamburger.owl#ChutegateBaconCheeseBurger
 :ChutegateBaconCheeseBurger rdf:type owl:NamedIndividual ,
                                      :BaconCheeseBurger ;
-                            :hasCalorificContentValue 620 ;
+                            :hasCalories 620 ;
+                            :hasPrice 10 ;
                             :hasRating 4 ;
                             :kidsMenu "false"^^xsd:boolean ;
-                            :price 10 ;
                             <http://www.Hamburger.com/ontologies/Hamburger.owl#Today'sSpecial> "false"^^xsd:boolean .
 
 
 ###  http://www.Hamburger.com/ontologies/Hamburger.owl#ChutegateCheeseBurger
 :ChutegateCheeseBurger rdf:type owl:NamedIndividual ,
                                 :CheeseBurger ;
-                       :hasCalorificContentValue 450 ;
+                       :hasCalories 450 ;
+                       :hasPrice 9 ;
                        :hasRating 5 ;
                        :kidsMenu "false"^^xsd:boolean ;
-                       :price 9 ;
                        <http://www.Hamburger.com/ontologies/Hamburger.owl#Today'sSpecial> "false"^^xsd:boolean .
 
 
 ###  http://www.Hamburger.com/ontologies/Hamburger.owl#ChutegateSpicyCowboyBaconBurger
 :ChutegateSpicyCowboyBaconBurger rdf:type owl:NamedIndividual ,
                                           :SpicyCowboyBaconBurger ;
-                                 :hasCalorificContentValue 660 ;
+                                 :hasCalories 660 ;
+                                 :hasPrice 13 ;
                                  :hasRating 5 ;
                                  :kidsMenu "false"^^xsd:boolean ;
-                                 :price 13 ;
                                  <http://www.Hamburger.com/ontologies/Hamburger.owl#Today'sSpecial> "false"^^xsd:boolean .
 
 
 ###  http://www.Hamburger.com/ontologies/Hamburger.owl#ChutegateVeggieBurger
 :ChutegateVeggieBurger rdf:type owl:NamedIndividual ,
                                 :VeggieBurger ;
-                       :hasCalorificContentValue 400 ;
+                       :hasCalories 400 ;
+                       :hasPrice 8 ;
                        :hasRating 3 ;
                        :kidsMenu "false"^^xsd:boolean ;
-                       :price 8 ;
                        <http://www.Hamburger.com/ontologies/Hamburger.owl#Today'sSpecial> "false"^^xsd:boolean .
 
 
@@ -698,9 +698,9 @@
                                :RedOnionTopping ,
                                :RegMayonnaise ,
                                :TomatoTopping ;
-                   :hasCalorificContentValue 500 ;
+                   :hasCalories 500 ;
+                   :hasPrice 11 ;
                    :kidsMenu "false"^^xsd:boolean ;
-                   :price 11 ;
                    <http://www.Hamburger.com/ontologies/Hamburger.owl#Today'sSpecial> "false"^^xsd:boolean .
 
 
@@ -712,10 +712,10 @@
                  :hasSauce :RegMayonnaise ;
                  :hasTopping :LettuceTopping ,
                              :TomatoTopping ;
-                 :hasCalorificContentValue 300 ;
+                 :hasCalories 300 ;
+                 :hasPrice 6 ;
                  :hasRating 5 ;
                  :kidsMenu "true"^^xsd:boolean ;
-                 :price 6 ;
                  <http://www.Hamburger.com/ontologies/Hamburger.owl#Today'sSpecial> "false"^^xsd:boolean .
 
 
