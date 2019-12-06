@@ -1,0 +1,805 @@
+@prefix : <http://www.Hamburger.com/ontologies/Hamburger.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.Hamburger.com/ontologies/Hamburger.owl> .
+
+<http://www.Hamburger.com/ontologies/Hamburger.owl> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#hasBuns
+:hasBuns rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :hasIngredient ;
+         owl:inverseOf :isBunsOf ;
+         rdf:type owl:FunctionalProperty ;
+         rdfs:domain :Hamburger ;
+         rdfs:range :Buns .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#hasIngredient
+:hasIngredient rdf:type owl:ObjectProperty ;
+               owl:inverseOf :isIngredientOf ;
+               rdf:type owl:TransitiveProperty .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#hasProtein
+:hasProtein rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :hasIngredient ;
+            owl:inverseOf :isProteinOf ;
+            rdfs:domain :Hamburger ;
+            rdfs:range :Protein .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#hasSauce
+:hasSauce rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :hasIngredient ;
+          owl:inverseOf :isSauceOf ;
+          rdfs:domain :Hamburger ;
+          rdfs:range :Sauce .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#hasSpiciness
+:hasSpiciness rdf:type owl:ObjectProperty ,
+                       owl:FunctionalProperty ;
+              rdfs:range :SpicinessValuePartition .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#hasTopping
+:hasTopping rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :hasIngredient ;
+            owl:inverseOf :isToppingOf ;
+            rdfs:domain :Hamburger ;
+            rdfs:range :Topping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#isBunsOf
+:isBunsOf rdf:type owl:ObjectProperty ;
+          rdfs:domain :Buns ;
+          rdfs:range :Hamburger .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#isIngredientOf
+:isIngredientOf rdf:type owl:ObjectProperty ,
+                         owl:TransitiveProperty .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#isProteinOf
+:isProteinOf rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :isIngredientOf ;
+             rdfs:domain :Protein ;
+             rdfs:range :Hamburger .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#isSauceOf
+:isSauceOf rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :isIngredientOf ;
+           rdfs:domain :Sauce ;
+           rdfs:range :Hamburger .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#isToppingOf
+:isToppingOf rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :isIngredientOf ;
+             rdfs:domain :Topping ;
+             rdfs:range :Hamburger .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#hasCalorificContentValue
+:hasCalorificContentValue rdf:type owl:DatatypeProperty ,
+                                   owl:FunctionalProperty .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#hasRating
+:hasRating rdf:type owl:DatatypeProperty .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#kidsMenu
+:kidsMenu rdf:type owl:DatatypeProperty ,
+                   owl:FunctionalProperty .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#price
+:price rdf:type owl:DatatypeProperty ,
+                owl:FunctionalProperty .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#Today'sSpecial
+<http://www.Hamburger.com/ontologies/Hamburger.owl#Today'sSpecial> rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#AmericanCheeseTopping
+:AmericanCheeseTopping rdf:type owl:Class ;
+                       rdfs:subClassOf :CheeseTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#BaconCheeseBurger
+:BaconCheeseBurger rdf:type owl:Class ;
+                   rdfs:subClassOf :NamedHamburger ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasSauce ;
+                                     owl:someValuesFrom :Mayonnaise
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasTopping ;
+                                     owl:someValuesFrom :LettuceTopping
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasTopping ;
+                                     owl:someValuesFrom :PickleTopping
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasTopping ;
+                                     owl:someValuesFrom :RedOnionTopping
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasTopping ;
+                                     owl:someValuesFrom :TomatoTopping
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasProtein ;
+                                     owl:allValuesFrom :Beef
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasTopping ;
+                                     owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                     owl:onClass :CheeseTopping
+                                   ] .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#BaconTopping
+:BaconTopping rdf:type owl:Class ;
+              rdfs:subClassOf :MeatTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#Barbecue
+:Barbecue rdf:type owl:Class ;
+          rdfs:subClassOf :Sauce .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#Beef
+:Beef rdf:type owl:Class ;
+      rdfs:subClassOf :Protein .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#Buns
+:Buns rdf:type owl:Class .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#CheddarCheeseTopping
+:CheddarCheeseTopping rdf:type owl:Class ;
+                      rdfs:subClassOf :CheeseTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#CheeseBurger
+:CheeseBurger rdf:type owl:Class ;
+              rdfs:subClassOf :NamedHamburger ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasSauce ;
+                                owl:someValuesFrom :Mayonnaise
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasTopping ;
+                                owl:someValuesFrom :LettuceTopping
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasTopping ;
+                                owl:someValuesFrom :PickleTopping
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasTopping ;
+                                owl:someValuesFrom :RedOnionTopping
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasTopping ;
+                                owl:someValuesFrom :TomatoTopping
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasProtein ;
+                                owl:allValuesFrom :Beef
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasTopping ;
+                                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                owl:onClass :CheeseTopping
+                              ] .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#CheeseTopping
+:CheeseTopping rdf:type owl:Class ;
+               rdfs:subClassOf :Topping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#Hamburger
+:Hamburger rdf:type owl:Class ;
+           rdfs:subClassOf owl:Thing ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasBuns ;
+                             owl:someValuesFrom :Buns
+                           ] .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#Hot
+:Hot rdf:type owl:Class ;
+     rdfs:subClassOf :SpicinessValuePartition ;
+     owl:disjointWith :Mild .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#JalapenoPepperTopping
+:JalapenoPepperTopping rdf:type owl:Class ;
+                       rdfs:subClassOf :PepperTopping ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty :hasSpiciness ;
+                                         owl:someValuesFrom :Hot
+                                       ] .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#KaiserRolls
+:KaiserRolls rdf:type owl:Class ;
+             rdfs:subClassOf :Buns .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#Ketchup
+:Ketchup rdf:type owl:Class ;
+         rdfs:subClassOf :Sauce .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#LettuceTopping
+:LettuceTopping rdf:type owl:Class ;
+                rdfs:subClassOf :VegetableTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#Mayonnaise
+:Mayonnaise rdf:type owl:Class ;
+            rdfs:subClassOf :Sauce .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#MeatTopping
+:MeatTopping rdf:type owl:Class ;
+             rdfs:subClassOf :Topping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#Mild
+:Mild rdf:type owl:Class ;
+      rdfs:subClassOf :SpicinessValuePartition .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#MozzarellaCheeseTopping
+:MozzarellaCheeseTopping rdf:type owl:Class ;
+                         rdfs:subClassOf :CheeseTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#MushroomTopping
+:MushroomTopping rdf:type owl:Class ;
+                 rdfs:subClassOf :VegetableTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#Mustard
+:Mustard rdf:type owl:Class ;
+         rdfs:subClassOf :Sauce .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#MyOwnBeefBurger
+:MyOwnBeefBurger rdf:type owl:Class ;
+                 rdfs:subClassOf :NamedHamburger .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#MyOwnVeggieBurger
+:MyOwnVeggieBurger rdf:type owl:Class ;
+                   rdfs:subClassOf :NamedHamburger .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#NamedHamburger
+:NamedHamburger rdf:type owl:Class ;
+                rdfs:subClassOf :Hamburger .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#OnionRolls
+:OnionRolls rdf:type owl:Class ;
+            rdfs:subClassOf :Buns .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#PepperJackCheeseTopping
+:PepperJackCheeseTopping rdf:type owl:Class ;
+                         rdfs:subClassOf :CheeseTopping ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty :hasSpiciness ;
+                                           owl:someValuesFrom :Mild
+                                         ] .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#PepperTopping
+:PepperTopping rdf:type owl:Class ;
+               rdfs:subClassOf :VegetableTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#PickleTopping
+:PickleTopping rdf:type owl:Class ;
+               rdfs:subClassOf :VegetableTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#PotatoRolls
+:PotatoRolls rdf:type owl:Class ;
+             rdfs:subClassOf :Buns .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#PrezelRolls
+:PrezelRolls rdf:type owl:Class ;
+             rdfs:subClassOf :Buns .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#Protein
+:Protein rdf:type owl:Class .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#RedOnionTopping
+:RedOnionTopping rdf:type owl:Class ;
+                 rdfs:subClassOf :VegetableTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#Sauce
+:Sauce rdf:type owl:Class .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#SesameSeedRolls
+:SesameSeedRolls rdf:type owl:Class ;
+                 rdfs:subClassOf :Buns .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#SlicedRolls
+:SlicedRolls rdf:type owl:Class ;
+             rdfs:subClassOf :Buns .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#SpicinessValuePartition
+:SpicinessValuePartition rdf:type owl:Class ;
+                         owl:equivalentClass [ rdf:type owl:Class ;
+                                               owl:unionOf ( :Hot
+                                                             :Mild
+                                                           )
+                                             ] ;
+                         rdfs:subClassOf :ValuePartition .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#SpicyCowboyBaconBurger
+:SpicyCowboyBaconBurger rdf:type owl:Class ;
+                        rdfs:subClassOf :NamedHamburger ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasSauce ;
+                                          owl:someValuesFrom :Barbecue
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasTopping ;
+                                          owl:someValuesFrom :BaconTopping
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasTopping ;
+                                          owl:someValuesFrom :JalapenoPepperTopping
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasTopping ;
+                                          owl:someValuesFrom :LettuceTopping
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasTopping ;
+                                          owl:someValuesFrom :PepperJackCheeseTopping
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasTopping ;
+                                          owl:someValuesFrom :PickleTopping
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasProtein ;
+                                          owl:allValuesFrom :Beef
+                                        ] .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#SpinachTopping
+:SpinachTopping rdf:type owl:Class ;
+                rdfs:subClassOf :VegetableTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#SwissCheeseTopping
+:SwissCheeseTopping rdf:type owl:Class ;
+                    rdfs:subClassOf :CheeseTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#TomatoTopping
+:TomatoTopping rdf:type owl:Class ;
+               rdfs:subClassOf :VegetableTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#Topping
+:Topping rdf:type owl:Class .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#Turkey
+:Turkey rdf:type owl:Class ;
+        rdfs:subClassOf :Protein .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#ValuePartition
+:ValuePartition rdf:type owl:Class .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#VegetableTopping
+:VegetableTopping rdf:type owl:Class ;
+                  rdfs:subClassOf :Topping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#Veggie
+:Veggie rdf:type owl:Class ;
+        rdfs:subClassOf :Protein .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#VeggieBurger
+:VeggieBurger rdf:type owl:Class ;
+              rdfs:subClassOf :NamedHamburger ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasTopping ;
+                                owl:someValuesFrom :LettuceTopping
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasTopping ;
+                                owl:someValuesFrom :PickleTopping
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasTopping ;
+                                owl:someValuesFrom :RedOnionTopping
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasTopping ;
+                                owl:someValuesFrom :TomatoTopping
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasProtein ;
+                                owl:allValuesFrom :Veggie
+                              ] .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#AmericanCheeseTopping
+:AmericanCheeseTopping rdf:type owl:NamedIndividual ,
+                                :CheeseTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#AngusBeefPatty
+:AngusBeefPatty rdf:type owl:NamedIndividual ,
+                         :Beef .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#BaconTopping
+:BaconTopping rdf:type owl:NamedIndividual ,
+                       :MeatTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#BlackBean-QuinoaBurger
+:BlackBean-QuinoaBurger rdf:type owl:NamedIndividual ,
+                                 :Veggie .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#BlackBeanBurger
+:BlackBeanBurger rdf:type owl:NamedIndividual ,
+                          :MyOwnVeggieBurger ;
+                 :hasBuns :SesameSeedRolls ;
+                 :hasProtein :BlackBeanPatty ;
+                 :hasTopping :RedOnionTopping ,
+                             :TomatoTopping ;
+                 :hasCalorificContentValue 400 ;
+                 :hasRating 5 ;
+                 :kidsMenu "false"^^xsd:boolean ;
+                 :price 9 ;
+                 <http://www.Hamburger.com/ontologies/Hamburger.owl#Today'sSpecial> "true"^^xsd:boolean .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#BlackBeanPatty
+:BlackBeanPatty rdf:type owl:NamedIndividual ,
+                         :Veggie .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#Black_Bean-Quinoa_Burger
+:Black_Bean-Quinoa_Burger rdf:type owl:NamedIndividual ,
+                                   :MyOwnVeggieBurger ;
+                          :hasBuns :SesameSeedRolls ;
+                          :hasProtein :BlackBean-QuinoaBurger ;
+                          :hasTopping :LettuceTopping ,
+                                      :MushroomTopping ,
+                                      :RedOnionTopping ,
+                                      :TomatoTopping ;
+                          :hasCalorificContentValue 400 ;
+                          :hasRating 5 ;
+                          :kidsMenu "false"^^xsd:boolean ;
+                          :price 15 ;
+                          <http://www.Hamburger.com/ontologies/Hamburger.owl#Today'sSpecial> "true"^^xsd:boolean ;
+                          rdfs:comment "https://www.cookinglight.com/food/vegetarian/veggie-burger-recipes?slide=195848#195848"^^xsd:string .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#ChedderCheeseTopping
+:ChedderCheeseTopping rdf:type owl:NamedIndividual ,
+                               :CheeseTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#ChutegateBaconCheeseBurger
+:ChutegateBaconCheeseBurger rdf:type owl:NamedIndividual ,
+                                     :BaconCheeseBurger ;
+                            :hasCalorificContentValue 620 ;
+                            :hasRating 4 ;
+                            :kidsMenu "false"^^xsd:boolean ;
+                            :price 10 ;
+                            <http://www.Hamburger.com/ontologies/Hamburger.owl#Today'sSpecial> "false"^^xsd:boolean .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#ChutegateCheeseBurger
+:ChutegateCheeseBurger rdf:type owl:NamedIndividual ,
+                                :CheeseBurger ;
+                       :hasCalorificContentValue 450 ;
+                       :hasRating 5 ;
+                       :kidsMenu "false"^^xsd:boolean ;
+                       :price 9 ;
+                       <http://www.Hamburger.com/ontologies/Hamburger.owl#Today'sSpecial> "false"^^xsd:boolean .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#ChutegateSpicyCowboyBaconBurger
+:ChutegateSpicyCowboyBaconBurger rdf:type owl:NamedIndividual ,
+                                          :SpicyCowboyBaconBurger ;
+                                 :hasCalorificContentValue 660 ;
+                                 :hasRating 5 ;
+                                 :kidsMenu "false"^^xsd:boolean ;
+                                 :price 13 ;
+                                 <http://www.Hamburger.com/ontologies/Hamburger.owl#Today'sSpecial> "false"^^xsd:boolean .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#ChutegateVeggieBurger
+:ChutegateVeggieBurger rdf:type owl:NamedIndividual ,
+                                :VeggieBurger ;
+                       :hasCalorificContentValue 400 ;
+                       :hasRating 3 ;
+                       :kidsMenu "false"^^xsd:boolean ;
+                       :price 8 ;
+                       <http://www.Hamburger.com/ontologies/Hamburger.owl#Today'sSpecial> "false"^^xsd:boolean .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#GroudBeefPatty
+:GroudBeefPatty rdf:type owl:NamedIndividual ,
+                         :Beef .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#HeinzTomatoKetchup
+:HeinzTomatoKetchup rdf:type owl:NamedIndividual ,
+                             :Ketchup .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#HeinzYellowMustard
+:HeinzYellowMustard rdf:type owl:NamedIndividual ,
+                             :Mustard .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#JalapenoPepper
+:JalapenoPepper rdf:type owl:NamedIndividual ,
+                         :PepperTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#KaiserRolls
+:KaiserRolls rdf:type owl:NamedIndividual ,
+                      :Buns .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#LettuceTopping
+:LettuceTopping rdf:type owl:NamedIndividual ,
+                         :VegetableTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#MozzarellaCheeseTopping
+:MozzarellaCheeseTopping rdf:type owl:NamedIndividual ,
+                                  :CheeseTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#MushroomTopping
+:MushroomTopping rdf:type owl:NamedIndividual ,
+                          :VegetableTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#OnionRolls
+:OnionRolls rdf:type owl:NamedIndividual ,
+                     :Buns .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#PepperJackCheese
+:PepperJackCheese rdf:type owl:NamedIndividual ,
+                           :CheeseTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#PickleTopping
+:PickleTopping rdf:type owl:NamedIndividual ,
+                        :VegetableTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#PotatoRolls
+:PotatoRolls rdf:type owl:NamedIndividual ,
+                      :Buns .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#PrezelRolls
+:PrezelRolls rdf:type owl:NamedIndividual ,
+                      :Buns .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#QuinoaPatty
+:QuinoaPatty rdf:type owl:NamedIndividual .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#RedOnionTopping
+:RedOnionTopping rdf:type owl:NamedIndividual ,
+                          :VegetableTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#RegMayonnaise
+:RegMayonnaise rdf:type owl:NamedIndividual .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#SesameSeedRolls
+:SesameSeedRolls rdf:type owl:NamedIndividual ,
+                          :Buns .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#SlicedRolls
+:SlicedRolls rdf:type owl:NamedIndividual ,
+                      :Buns .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#SpinachTopping
+:SpinachTopping rdf:type owl:NamedIndividual ,
+                         :VegetableTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#SwissCheeseTopping
+:SwissCheeseTopping rdf:type owl:NamedIndividual ,
+                             :CheeseTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#TofuPatty
+:TofuPatty rdf:type owl:NamedIndividual ,
+                    :Veggie .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#TomatoTopping
+:TomatoTopping rdf:type owl:NamedIndividual ,
+                        :VegetableTopping .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#kidPatty
+:kidPatty rdf:type owl:NamedIndividual ,
+                   :Beef .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#myOwnCheeseBurger
+:myOwnCheeseBurger rdf:type owl:NamedIndividual ,
+                            :MyOwnBeefBurger ;
+                   :hasBuns :PrezelRolls ;
+                   :hasProtein :GroudBeefPatty ;
+                   :hasTopping :LettuceTopping ,
+                               :PepperJackCheese ,
+                               :PickleTopping ,
+                               :RedOnionTopping ,
+                               :RegMayonnaise ,
+                               :TomatoTopping ;
+                   :hasCalorificContentValue 500 ;
+                   :kidsMenu "false"^^xsd:boolean ;
+                   :price 11 ;
+                   <http://www.Hamburger.com/ontologies/Hamburger.owl#Today'sSpecial> "false"^^xsd:boolean .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#myOwnKidsBurger
+:myOwnKidsBurger rdf:type owl:NamedIndividual ,
+                          :MyOwnBeefBurger ;
+                 :hasBuns :SesameSeedRolls ;
+                 :hasProtein :kidPatty ;
+                 :hasSauce :RegMayonnaise ;
+                 :hasTopping :LettuceTopping ,
+                             :TomatoTopping ;
+                 :hasCalorificContentValue 300 ;
+                 :hasRating 5 ;
+                 :kidsMenu "true"^^xsd:boolean ;
+                 :price 6 ;
+                 <http://www.Hamburger.com/ontologies/Hamburger.owl#Today'sSpecial> "false"^^xsd:boolean .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#Duke'sRealMayonnaise.
+<http://www.Hamburger.com/ontologies/Hamburger.owl#Duke'sRealMayonnaise.> rdf:type owl:NamedIndividual ,
+                                                                                   :Mayonnaise .
+
+
+###  http://www.Hamburger.com/ontologies/Hamburger.owl#SweetBabyRay's
+<http://www.Hamburger.com/ontologies/Hamburger.owl#SweetBabyRay's> rdf:type owl:NamedIndividual ,
+                                                                            :Barbecue .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :AmericanCheeseTopping
+                :CheddarCheeseTopping
+                :MozzarellaCheeseTopping
+                :PepperJackCheeseTopping
+                :SwissCheeseTopping
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Barbecue
+                :Ketchup
+                :Mayonnaise
+                :Mustard
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Beef
+                :Turkey
+                :Veggie
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Buns
+                :Hamburger
+                :Protein
+                :Sauce
+                :Topping
+                :ValuePartition
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :CheeseTopping
+                :MeatTopping
+                :VegetableTopping
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :KaiserRolls
+                :OnionRolls
+                :PotatoRolls
+                :PrezelRolls
+                :SesameSeedRolls
+                :SlicedRolls
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :LettuceTopping
+                :MushroomTopping
+                :PepperTopping
+                :PickleTopping
+                :RedOnionTopping
+                :SpinachTopping
+                :TomatoTopping
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
